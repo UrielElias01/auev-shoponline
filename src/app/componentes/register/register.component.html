@@ -1,0 +1,68 @@
+<form [formmGroup]="registerForm">
+    <p-card header="Registrar Miembro" [style]="{width: '360px'}">
+        <div class="field">
+            <span for="fullName">Nombre Completo</span>
+            <input
+                type="text"
+                pInputText
+                formControlName="fullName"
+                class="w-full"
+                name="fullName"
+                placeholder="Nombre Completo"/>
+        </div>
+        <small *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)" class="block p-error">
+            <div *ngIf="fullName.errors?.['required']">Nombre es requerido</div>
+            <div *ngIf="fullName.errors?.['nombre']">Nombre deberá ser válido</div>
+        </small>
+
+        <div class="field">
+            <span for="email">Correo Electrónico</span>
+            <input
+                type="text"
+                pInputText
+                formControlName="email"
+                class="w-full"
+                name="email"
+                placeholder="Teclea tu Correo Electrónico"/>
+        </div>
+        <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+            <div *ngIf="email.errors?.['required']">Email es requerido</div>
+            <div *ngIf="email.errors?.['email']">Email deberá ser válido</div>
+        </small>
+
+        <div class="field">
+            <span for="password">Contraseña</span>
+            <input
+                type="password"
+                pInputText
+                formControlName="password"
+                class="w-full"
+                name="password"
+                placeholder="Teclea tu contraseña"/>
+        </div>
+        <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
+            <div *ngIf="password.errors?.['required']">Contraseña es requerida</div>
+            <div *ngIf="password.errors?.['pattern']">Contraseña deberá contener minisculas, mayusculas y carácteres especiales</div>
+            <div *ngIf="password.errors?.['minLength']">Contraseña deberá tener mas de 8 caracteres</div>
+        </small>
+
+        <div class="field">
+            <span for="confirmPassword">Confirmar Contraseña</span>
+            <input
+                type="password"
+                pInputText
+                formControlName="confirmPassword"
+                class="w-full"
+                name="confirmPassword"
+                placeholder="Confirmar Contraseña"/>
+        </div>
+        <small *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="block p-error">
+            <div *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid">Contraseñas no coinciden</div>
+        </small>
+        <p-button label="Registrar" styleClass="w-full" [disabled]="registerForm.invalid"></p-button>
+        <br>
+        <div clas="mt-2">
+            ¿Ya eres miembro? <a routerLink="/login">Ingresar</a>
+        </div>
+    </p-card>
+</form>
