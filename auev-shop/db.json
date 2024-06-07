@@ -1,3 +1,82 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "98d3",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "Uriel"
+    },
+    {
+      "id": "d782",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "Uriel"
+    },
+    {
+      "id": "113e",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "Uriel"
+    },
+    {
+      "id": "84fa",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "Uriel"
+    },
+    {
+      "id": "2e6d",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "Uriel"
+    },
+    {
+      "id": "34c0",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "Uriel"
+    },
+    {
+      "id": "2797",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "Uriel"
+    },
+    {
+      "id": "c1e7",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "0e27",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "15b4",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "6ab6",
+      "fullName": "Uriel Elias",
+      "email": "urielelias.01@gmail.com",
+      "password": "hola"
+    },
+    {
+      "id": "266c",
+      "fullName": "Uriel Velazquez",
+      "email": "urielelias.01@gmail.com",
+      "password": "Uriel123@"
+    },
+    {
+      "id": "6960",
+      "fullName": "Daniela Cruz",
+      "email": "daniela@gmail.com",
+      "password": "@Daniela123"
+    }
+  ]
 }

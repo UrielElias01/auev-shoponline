@@ -6,9 +6,11 @@ import { ProductoListaComponent } from './componentes/producto-lista/producto-li
 
 
 const routes: Routes = [
-  {path: 'login', component:LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: '', component: ProductoListaComponent}
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: ProductoListaComponent },
+  // Otras rutas si las tienes
+  { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a 'home'
 ];
 
 @NgModule({
