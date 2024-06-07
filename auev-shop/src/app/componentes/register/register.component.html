@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm">
+<form [formGroup]="registerForm" (ngSubmit)="enviarRegistro()">
     <p-card header="Registrar Miembro" [style]="{ width: '360px' }">
       <div class="field">
         <label for="fullName">Nombre Completo</label>
@@ -45,7 +45,7 @@
           Contraseñas no coinciden.
         </small>
       </div>
-      <p-button label="Registrar" styleClass="w-full" [disabled]="registerForm.invalid"></p-button>
+      <p-button label="Registrar" styleClass="w-full" [disabled]="registerForm.invalid" type="submit"></p-button>
       <div class="mt-2">¿Ya eres miembro? <a href="/login">Registrate</a></div>
     </p-card>
   </form>
