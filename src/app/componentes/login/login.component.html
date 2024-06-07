@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm">
+<form [formGroup]="loginForm" (ngSubmit)="login()">
     <p-card header="Ingresa al Sistema" [style]="{width: '360px'}">
         <div class="field">
             <span>Correo Electrónico</span>
@@ -21,7 +21,7 @@
                 pInputText
                 formControlName="password"
                 class="w-full"
-                name="password
+                name="password"
                 placeholder="Teclea tu contraseña"/>
         </div>
         <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
@@ -29,7 +29,7 @@
             <div *ngIf="password.errors?.['pattern']">Contraseña deberá contener minisculas, mayusculas y carácteres especiales</div>
             <div *ngIf="password.errors?.['minLength']">Contraseña deberá tener mas de 8 caracteres</div>
         </small>
-        <p-button label="Ingresar" styleClass="w-full" [disabled]="loginForm.invalid"></p-button>
+        <p-button label="Ingresar" styleClass="w-full" [disabled]="loginForm.invalid" type="submit"></p-button>
         <br>
         <div clas="mt-2">
             ¿No eres miembro? <a routerLink="/register">Registrate</a>
