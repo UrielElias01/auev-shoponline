@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Producto {
-  id: number;
+  id: string;
   codigo: string;
   nombre: string;
   descripcion: string;
@@ -28,6 +28,9 @@ export class ProductoService {
   }
 
   createProduct(product: Producto): Observable<Producto> {
+    //Generar una id aleatoria para el producto
+    product.id = ''+ Math.random().toString(36).substr(2, 9)
+
     return this.http.post<Producto>(this.apiURL, product);
   }
 
@@ -35,7 +38,7 @@ export class ProductoService {
     return this.http.put<Producto>(`${this.apiURL}/${product.id}`, product);
   }
 
-  deleteProduct(id: number): Observable<void> {
+  deleteProduct(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiURL}/${id}`);
   }
 }

@@ -12,7 +12,7 @@ export class ProductoListaComponent {
   products: Producto[] = [];
   productDialog: boolean = false;
   product: Producto = {
-    id: 0,
+    id: '',
     codigo: '',
     nombre: '',
     descripcion: '',
@@ -58,7 +58,7 @@ export class ProductoListaComponent {
 
   openNew() {
     this.product = {
-      id: 0,
+      id: '',
       codigo: '',
       nombre: '',
       descripcion: '',
@@ -118,7 +118,7 @@ export class ProductoListaComponent {
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
           this.productDialog = false;
           this.product = {
-            id: 0,
+            id: '',
             codigo: '',
             nombre: '',
             descripcion: '',
@@ -136,7 +136,7 @@ export class ProductoListaComponent {
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
           this.productDialog = false;
           this.product = {
-            id: 0,
+            id: '',
             codigo: '',
             nombre: '',
             descripcion: '',
@@ -152,7 +152,7 @@ export class ProductoListaComponent {
     }
   }
 
-  findIndexById(id: number): number {
+  findIndexById(id: string): number {
     return this.products.findIndex(p => p.id === id);
   }
 

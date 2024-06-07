@@ -52,7 +52,6 @@ export class RegisterComponent {
 
     this.authService.registerUser(data as User).subscribe(
       response => {
-        console.log(response);
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Registrado Agregado' });
         this.router.navigate(['login']);
       },
