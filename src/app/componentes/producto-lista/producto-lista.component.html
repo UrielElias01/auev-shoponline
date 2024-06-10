@@ -108,7 +108,7 @@
                 <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false" />
             </td>
             <td>
-                <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" />
+                <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.estadoInventario)">{{getSeverityLabel(product.estadoInventario)}}</p-tag>
             </td>
             <td>
                 <p-button 
@@ -136,7 +136,7 @@
     </ng-template>
 </p-table>
 
-<p-dialog header="Product Details" [(visible)]="productDialog" [modal]="true" [style]="{width: '450px'}" (onHide)="hideDialog()">
+<p-dialog header="Product Details" [(visible)]="productDialog" [modal]="true" [style]="{width: '450px', height: 'auto'}" (onHide)="hideDialog()" (onShow)="resetFileInput()">
     <form #productForm="ngForm">
         <div class="p-fluid">
             <div class="p-field">
@@ -148,8 +148,21 @@
                 <input id="price" type="number" pInputText [(ngModel)]="product.precio" name="price" required />
             </div>
             <div class="p-field">
+                <label for="description">Description</label>
+                <textarea id="description" pInputTextarea [(ngModel)]="product.descripcion" name="description"></textarea>
+            </div>
+            <div class="p-field">
+                <label for="category">Category</label>
+                <input id="category" type="text" pInputText [(ngModel)]="product.categoria" name="category" />
+            </div>
+            <div class="p-field">
+                <label for="quantity">Quantity</label>
+                <input id="quantity" type="number" pInputText [(ngModel)]="product.cantidad" name="quantity" />
+            </div>
+            <div class="p-field">
                 <label for="image">Image</label>
-                <p-fileUpload
+                <p-fileUpload *ngIf="!product.imagen"
+                    #fileUpload
                     name="image"
                     mode="basic"
                     accept="image/*"
@@ -158,17 +171,30 @@
                     chooseLabel="Browse"
                     (onSelect)="handleFileSelect($event)"
                 ></p-fileUpload>
+                <div>
+                    <img *ngIf="product.imagen" [src]="product.imagen" alt="Product Image" style="max-width: 100%; max-height: 300px; margin-top: 10px;">
+                </div>
+                <button *ngIf="product.imagen" type="button" pButton label="Clear" icon="pi pi-times" (click)="clearImage(fileUpload)"></button>
             </div>
             <div class="p-field">
                 <label for="status">Status</label>
                 <p-dropdown
                     [options]="statusOptions"
-                    [(ngModel)]="product.estadoInventario"
+                    [(ngModel)]="selectedStatus"
                     [showClear]="true"
+                    #statusDropdown
                     placeholder="Select Status"
                     optionLabel="label"
                     optionValue="value"
                 ></p-dropdown>
+            </div>
+            <div class="p-field">
+                <label for="code">Code</label>
+                <input id="code" type="text" pInputText [(ngModel)]="product.codigo" name="code" />
+            </div>
+            <div class="p-field">
+                <label for="rating">Rating</label>
+                <input id="rating" type="number" pInputText [(ngModel)]="product.rating" name="rating" />
             </div>
         </div>
     </form>
