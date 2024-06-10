@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { ProductoListaComponent } from './componentes/producto-lista/producto-lista.component';
+import { authGuard } from './guardias/auth.guard';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: ProductoListaComponent },
+  { path: 'home', component: ProductoListaComponent, canActivate: [authGuard]},
   // Otras rutas si las tienes
   { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a 'home'
 ];
