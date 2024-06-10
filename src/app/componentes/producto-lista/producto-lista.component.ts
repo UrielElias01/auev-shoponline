@@ -2,11 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Producto, ProductoService } from '../../services/producto.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { Dropdown } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-producto-lista',
   templateUrl: './producto-lista.component.html',
-  styleUrl: './producto-lista.component.css'
+  styleUrls: ['./producto-lista.component.css']
 })
 export class ProductoListaComponent {
   products: Producto[] = [];
@@ -24,14 +25,17 @@ export class ProductoListaComponent {
     rating: 0
   };
   selectedProducts: Producto[] = [];
+  selectedStatus: string = '';
   submitted: boolean = false;
   statusOptions = [
     { label: 'In Stock', value: 'INSTOCK' },
     { label: 'Low Stock', value: 'LOWSTOCK' },
     { label: 'Out of Stock', value: 'OUTOFSTOCK' }
-];
+  ];
 
   @ViewChild('dt') dt: Table | undefined;
+  @ViewChild('fileUpload') fileUpload: any;
+  @ViewChild('statusDropdown') statusDropdown?: Dropdown;
 
   constructor(
     private productService: ProductoService,
@@ -71,6 +75,7 @@ export class ProductoListaComponent {
     };
     this.submitted = false;
     this.productDialog = true;
+    this.resetFileInput();
   }
 
   deleteSelectedProducts() {
@@ -92,10 +97,10 @@ export class ProductoListaComponent {
   editProduct(product: Producto) {
     this.product = { ...product };
     this.productDialog = true;
+    this.resetFileInput();
   }
 
   deleteProduct(product: Producto) {
-    console.log(product);
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + product.nombre + '?',
       header: 'Confirm',
@@ -110,7 +115,7 @@ export class ProductoListaComponent {
 
   saveProduct() {
     this.submitted = true;
-
+    this.product.estadoInventario = this.statusDropdown?.value || '';
     if (this.product.nombre?.trim()) {
       if (this.product.id) {
         this.productService.updateProduct(this.product).subscribe(data => {
@@ -159,6 +164,7 @@ export class ProductoListaComponent {
   hideDialog() {
     this.productDialog = false;
     this.submitted = false;
+    this.resetFileInput();
   }
 
   getSeverity(status: string): "success" | "info" | "warning" | "danger" | "secondary" | "contrast" | undefined {
@@ -174,16 +180,38 @@ export class ProductoListaComponent {
     }
   }
 
+  getSeverityLabel(status: string): string {
+    switch (status) {
+      case 'INSTOCK':
+        return 'In Stock';
+      case 'LOWSTOCK':
+        return 'Low Stock';
+      case 'OUTOFSTOCK':
+        return 'Out of Stock';
+      default:
+        return '';
+    }
+  }
+
   handleFileSelect(event: any) {
     const file = event.files[0];
     if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            this.product.imagen = reader.result as string;
-        };
-        reader.readAsDataURL(file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.product.imagen = reader.result as string;
+      };
+      reader.readAsDataURL(file);
     }
-}
+  }
 
+  resetFileInput() {
+    if (this.fileUpload) {
+      this.fileUpload.clear(); // Restablece el valor del archivo
+    }
+  }
 
+  clearImage(fileUpload: any) {
+    this.product.imagen = '';
+    fileUpload.clear();
+  }
 }
