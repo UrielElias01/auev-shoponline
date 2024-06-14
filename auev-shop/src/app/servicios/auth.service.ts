@@ -1,19 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/auth';
 import { Observable } from 'rxjs';
+import { User } from '../interfaces/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl =  'http://localhost:3001';
+  private baseUrl = 'http://localhost:3001';
 
-  constructor( private http:HttpClient) { }
+  constructor(private http:HttpClient) { }
 
-  registerUser(usuario: User){
-    return this.http.post(`${this.baseUrl}/users`,usuario);
+  registerUser(usuario:User){
+    console.log(usuario);
+    return this.http.post(`${this.baseUrl}/users`, usuario);
   }
 
   getUserByEmail(email:string):Observable<User[]> {
