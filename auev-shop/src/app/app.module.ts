@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimengModule } from './primeng.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegisterComponent } from './componentes/register/register.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { HomeComponent } from './componentes/home/home.component';
 import { ProductoListaComponent } from './componentes/producto-lista/producto-lista.component';
 
 @NgModule({
@@ -20,18 +20,23 @@ import { ProductoListaComponent } from './componentes/producto-lista/producto-li
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    HomeComponent,
     ProductoListaComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    PrimengModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    ToastModule
+    PrimengModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    ConfirmationService,
+    provideClientHydration()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

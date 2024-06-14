@@ -15,48 +15,47 @@ export class RegisterComponent {
   registerForm = this.fb.group({
     fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [
-      Validators.required,
-      // Validators.pattern(/^(?=.[a-z])(?=.[A-Z])(?=.*\W).{8,}$/)
-    ]],
-    confirmPassword: ['',Validators.required]
-  }, {
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+    confirmPassword:['', Validators.required]
+  },
+  {
     validators: passwordMatchValidator
   })
-
-  enviarRegistro(){
-    // console.log(this.registerForm.value);
-    const data = { ...this.registerForm.value};
-
-    delete data.confirmPassword;
-
-    this.authService.registerUser(data as User).subscribe(
-      response => {
-        console.log(response)
-        this.mensaje.add({
-          severity: 'success', summary: 'Success', detail: 'Registro Agregado'
-        });
-        this.router.navigate(['login']);
-      },
-      error => console.log(error)
-    )
+  
+  constructor(private fb: FormBuilder, private authService: AuthService,
+    private messageService: MessageService,
+    private router: Router,
+    private mensaje: MessageService
+  ){
   }
-
-  constructor(private fb: FormBuilder, private authService: AuthService, private messageService: MessageService, private router:Router, private mensaje: MessageService) { }
 
   get fullName(){
     return this.registerForm.controls['fullName'];
   }
 
-  get email() {
+  get email(){ 
     return this.registerForm.controls['email'];
   }
 
-  get password() {
+  get password(){
     return this.registerForm.controls['password'];
   }
 
-  get confirmPassword() {
+  get confirmPassword(){
     return this.registerForm.controls['confirmPassword'];
+  }
+
+  enviarRegistro(){
+    const data = {...this.registerForm.value};
+
+    delete data.confirmPassword;
+
+    this.authService.registerUser(data as User).subscribe(
+      response => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Registrado Agregado' });
+        this.router.navigate(['login']);
+      },
+      error => console.log(error)
+    );
   }
 }
