@@ -43,6 +43,8 @@ export class ProductoListaComponent {
     private confirmationService: ConfirmationService
   ) { }
 
+  
+
   ngOnInit() {
     this.loadProducts();
   }

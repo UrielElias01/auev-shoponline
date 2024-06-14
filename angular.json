@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "orvm-shop": {
+    "auev-shop": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
@@ -41,7 +41,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/orvm-shop",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -65,12 +65,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "3MB"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumError": "9kB"
                 }
               ],
               "outputHashing": "all"
@@ -87,10 +87,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "orvm-shop:build:production"
+              "buildTarget": "auev-shop:build:production"
             },
             "development": {
-              "buildTarget": "orvm-shop:build:development"
+              "buildTarget": "auev-shop:build:development"
             }
           },
           "defaultConfiguration": "development"

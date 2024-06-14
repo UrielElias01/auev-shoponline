@@ -1,18 +1,6 @@
 {
   "users": [
     {
-      "id": "f6ff",
-      "fullName": "Oscar",
-      "email": "oscarricardo.sipo@gmail.com",
-      "password": "Ayudame7?"
-    },
-    {
-      "id": "568f",
-      "fullName": "Ejemplo",
-      "email": "ejemplo@gmail.com",
-      "password": "Ejemplo7!"
-    },
-    {
       "id": "e3fb",
       "fullName": "Ejemplo",
       "email": "ejemplo@gmail.com",
